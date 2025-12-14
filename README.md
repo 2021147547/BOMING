@@ -1,36 +1,34 @@
 CAS2105 Homework 6: Mini AI Pipeline Project
-
 News Article Classification with a Naïve Baseline and BiLSTM Pipeline
 
-ZHAOBOMING 2021147547
+ZHAO BOMING (2021147547)
 
-1 Introduction
+1. Introduction
 
-This project provides a gentle introduction to designing simple AI pipelines through a concrete text classification task.
-Rather than training very large models or conducting an extensive literature review, the project focuses on the core workflow of applied AI: problem definition, baseline design, pipeline construction, evaluation, and reflection.
+This project provides a gentle introduction to designing simple AI pipelines through a concrete text classification task. Rather than training very large models or conducting an extensive literature review, the project focuses on the core workflow of applied AI: problem definition, baseline design, pipeline construction, evaluation, and reflection.
 
 In this project, I address a news article classification task using a public dataset. I first implement a simple naïve keyword-based baseline, and then compare it with an improved neural network–based AI pipeline built using a Bidirectional LSTM model. The two approaches are evaluated using standard classification metrics and qualitative error analysis.
 
 The emphasis of this project is not on achieving state-of-the-art performance, but on understanding how and why an AI pipeline improves upon a simple heuristic method. All experiments are designed to run efficiently on a single GPU or CPU within a short time.
 
-2 Task Definition
+2. Task Definition
 
-Task description:
+Task description
 Classify a news article into one of four categories: World, Sports, Business, or Science/Technology.
 
-Motivation:
+Motivation
 News classification is a practical and widely used task in real-world systems such as news aggregation, content recommendation, and information filtering. It also serves as a clear example of how different modeling approaches handle natural language understanding.
 
-Input / Output:
+Input / Output
 
-Input: A news article represented by its title and description.
+Input: A news article represented by its title and description
 
-Output: A single class label from {World, Sports, Business, Sci/Tech}.
+Output: A single class label from {World, Sports, Business, Sci/Tech}
 
-Success criteria:
+Success criteria
 The system is considered “good” if it significantly outperforms a naïve rule-based baseline on the test set, measured using classification accuracy and related metrics.
 
-3 Methods
+3. Methods
 
 This section describes both the naïve baseline and the improved AI pipeline.
 
@@ -60,7 +58,7 @@ Model: Bidirectional LSTM (BiLSTM) neural network with an embedding layer
 
 Pipeline stages
 
-Preprocessing:
+Preprocessing
 
 Concatenate title and description
 
@@ -68,13 +66,13 @@ Tokenization with a fixed vocabulary size
 
 Sequence padding and truncation to a maximum length of 200 tokens
 
-Representation:
+Representation
 
 Trainable word embeddings
 
 Two stacked Bidirectional LSTM layers
 
-Decision:
+Decision
 
 Global max pooling
 
@@ -85,7 +83,7 @@ Softmax output for 4-class classification
 Design choices and justification
 The BiLSTM model is chosen because it can capture sequential and contextual information in text, which the naïve baseline lacks. The architecture remains relatively lightweight to ensure short training time while still demonstrating a clear improvement over heuristic methods.
 
-4 Experiments
+4. Experiments
 4.1 Datasets
 
 Source
@@ -102,7 +100,8 @@ Train/Test split
 Training set: 120,000 samples
 
 Test set: 7,600 samples
-A subset of 20,000 training samples is used for faster experimentation.
+
+A subset of 20,000 training samples is used for faster experimentation
 
 Preprocessing steps
 
@@ -138,6 +137,8 @@ The AI pipeline improves accuracy by more than 24 percentage points compared to 
 
 Qualitative examples
 
+Example 1
+
 Text: “Fears for T N pension after talks…”
 
 Ground Truth: Business
@@ -147,6 +148,8 @@ Baseline: World
 AI Pipeline: Sports
 
 Observation: The baseline fails due to missing keywords, while the AI model is misled by contextual cues.
+
+Example 2
 
 Text: “The Race is On: Second Private Team Sets Launch Date for Human Spaceflight…”
 
@@ -158,6 +161,8 @@ AI Pipeline: Sci/Tech
 
 Observation: The AI pipeline correctly captures the technological context beyond the word “Race”.
 
+Example 3
+
 Text: “Ky. Company Wins Grant to Study Peptides…”
 
 Ground Truth: Sci/Tech
@@ -168,10 +173,10 @@ AI Pipeline: World
 
 Observation: Both methods struggle, highlighting the difficulty of borderline cases.
 
-5 Reflection and Limitations
+5. Reflection and Limitations
 
 The most successful aspect of this project was the clear performance improvement achieved by the BiLSTM model over the keyword-based baseline. Even with only one training epoch, the AI pipeline significantly outperformed the heuristic approach. The baseline performed better than expected on very obvious cases but failed frequently on ambiguous or keyword-sparse articles.
 
 One challenge was balancing model complexity with training time, especially given the size of the dataset. Accuracy proved to be a reasonable metric for overall comparison, but it does not fully capture category-specific errors. With more time or computational resources, I would explore using pre-trained transformer models such as DistilBERT and conduct a more detailed error analysis per class.
 
-#Note: The train.csv file is too large to be uploaded.
+Note: The train.csv file is too large to be uploaded.
