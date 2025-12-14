@@ -173,3 +173,5 @@ Observation: Both methods struggle, highlighting the difficulty of borderline ca
 The most successful aspect of this project was the clear performance improvement achieved by the BiLSTM model over the keyword-based baseline. Even with only one training epoch, the AI pipeline significantly outperformed the heuristic approach. The baseline performed better than expected on very obvious cases but failed frequently on ambiguous or keyword-sparse articles.
 
 One challenge was balancing model complexity with training time, especially given the size of the dataset. Accuracy proved to be a reasonable metric for overall comparison, but it does not fully capture category-specific errors. With more time or computational resources, I would explore using pre-trained transformer models such as DistilBERT and conduct a more detailed error analysis per class.
+
+#Note: The train.csv file is too large to be uploaded.
